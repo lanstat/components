@@ -1,0 +1,29 @@
+{
+  "name": "sistval",
+  "authors": [
+    "Javier Garson <lanstat@gmail.com>"
+  ],
+  "description": "Sistema web para la empresa sistval",
+  "main": "",
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "AngularJS": "angular-latest#^1.5.8",
+    "angular-route": "^1.5.8",
+    "angular-resource": "^1.5.8",
+    "angular-datatables": "^0.5.4"
+  }
+}

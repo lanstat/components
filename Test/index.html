@@ -1,0 +1,26 @@
+<html ng-app="componentsJS">
+<body ng-controller="siteController">
+  <p>
+    {{form.selected}}
+  </p>
+
+  <combobox data-model="form.selected" data-source="form.dataSource"></combobox>
+
+  <p>{{test}}</p>
+
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="../Directives/combobox.js"></script>
+  <script>
+    var app = angular.module('componentsJS', ['bitterscope.components']);
+
+    app.controller('siteController', function($scope){
+      $scope.test = 'hola mundo';
+      $scope.form = {
+        dataSource: ['primer', 'segundo'],
+        input: 'dataaaa',
+        selected: '1'
+      };
+    });
+  </script>
+</body>
+</html>
