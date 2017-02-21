@@ -6,6 +6,11 @@
 
   <combobox data-model="form.selected" data-source="form.dataSource"></combobox>
 
+  <select ng-model="form.selected">
+    <option value="1">primer</option>
+    <option value="2">segundo</option>
+  </select>
+
   <p>{{test}}</p>
 
   <script src="../bower_components/angular/angular.min.js"></script>
@@ -16,10 +21,14 @@
     app.controller('siteController', function($scope){
       $scope.test = 'hola mundo';
       $scope.form = {
-        dataSource: ['primer', 'segundo'],
+        dataSource: [{id:1, value:'primer'},{id:2,value: 'segundo'}],
         input: 'dataaaa',
-        selected: '1'
+        selected: 'primer'
       };
+
+      $scope.$watch('form.selected', function(){
+        console.log($scope.form);
+      })
     });
   </script>
 </body>
