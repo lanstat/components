@@ -6,12 +6,14 @@
 
   <combobox data-model="form.selected" data-source="form.dataSource"></combobox>
 
-  <select ng-model="form.selected">
+  <select ng-model="form.selected.value">
     <option value="1">primer</option>
     <option value="2">segundo</option>
   </select>
 
   <p>{{test}}</p>
+
+  <button ng-click="validate()">Validar</button>
 
   <script src="../bower_components/angular/angular.min.js"></script>
   <script src="../Directives/combobox.js"></script>
@@ -23,8 +25,12 @@
       $scope.form = {
         dataSource: [{id:1, value:'primer'},{id:2,value: 'segundo'}],
         input: 'dataaaa',
-        selected: 'primer'
+        selected: {value: 'primer'}
       };
+
+      $scope.validate = function(){
+        $scope.form.selected.validate();
+      }
 
       $scope.$watch('form.selected', function(){
         console.log($scope.form);

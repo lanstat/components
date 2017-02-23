@@ -1,6 +1,18 @@
 var app = angular.module('bitterscope.components', []);
 
-app.directive("combobox", function() {
+app.directive("combobox", function($compile) {
+    var reloadComponent = function(scope, element){
+      var template = '<select ng-model="model.value">';
+
+      for(var i=0;i<scope.source.length;i++){
+        template += '<option value="' + scope.source[i].id + '">' + scope.source[i].value + '</option>';
+      }
+
+      template += '</select>';
+
+      element.html('').append($compile(template)(scope))
+    };
+
     return {
         restrict: 'E',
         scope: {
@@ -10,9 +22,13 @@ app.directive("combobox", function() {
         controller: function($scope, $element) {
 
         },
-        link: function(scope, element, attrs, ctrls) {
+        link: function(scope, element, attrs) {
+          scope.model.validate = function(){
+            alert('validar');
+          }
+
+          reloadComponent(scope, element);
         },
-        template:'<select ng-options="sauce.id as sauce.value for sauce in source" ng-model="model"></select>',
         replace:true
     }
 });
