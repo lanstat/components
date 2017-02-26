@@ -1,0 +1,35 @@
+<html ng-app="componentsJS">
+<body ng-controller="siteController">
+  <text-input data-model="form.input" data-options="form.inputOptions"></text-input>
+  <br />
+  <p>
+    {{form.selected}}
+  </p>
+
+  <combobox data-model="form.selected" data-options="form.comboOptions" ></combobox>
+  <br />
+  <button ng-click="validate()">Validate</button>
+
+  <script src="../bower_components/angular/angular.min.js"></script>
+  <script src="../dist/app.js"></script>
+  <script src="../dist/Directives/textinput.js"></script>
+  <script src="../dist/Directives/combobox.js"></script>
+  <script>
+    var app = angular.module('componentsJS', ['bitterscope.components']);
+
+    app.controller('siteController', function($scope){
+      $scope.test = 'hola mundo';
+      $scope.form = {
+        selected: {value: 'primer'},
+        comboOptions: {source: [{id:1, value:'primer'},{id:2,value: 'segundo'}]},
+        input: 'dataaaa',
+        inputOptions: {required: true}
+      };
+
+      $scope.validate = function(){
+        $scope.form.input.validate();
+      }
+    });
+  </script>
+</body>
+</html>

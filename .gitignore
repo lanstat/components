@@ -93,3 +93,4 @@ ENV/
 .ropeproject
 
 bower_components
+node_modules

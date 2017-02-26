@@ -1,0 +1,12 @@
+{
+  "compileOnSave": true,
+  "compilerOptions": {
+    "module": "none",
+    "target": "ES6",
+    "rootDir": ".",
+    "outDir": "./dist/"
+  },
+  "filesGlob": [
+    "Directives/*.ts"
+  ]
+}

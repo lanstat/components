@@ -21,9 +21,6 @@
   ],
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "AngularJS": "angular-latest#^1.5.8",
-    "angular-route": "^1.5.8",
-    "angular-resource": "^1.5.8",
-    "angular-datatables": "^0.5.4"
+    "AngularJS": "angular-latest#^1.5.8"
   }
 }
