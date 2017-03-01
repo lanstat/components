@@ -8,12 +8,16 @@
 
   <combobox data-model="form.selected" data-options="form.comboOptions" ></combobox>
   <br />
+
+  <checkbox data-model="form.check" data-options="form.checkOptions" ></checkbox>
+  <br />
   <button ng-click="validate()">Validate</button>
 
   <script src="../bower_components/angular/angular.min.js"></script>
   <script src="../dist/app.js"></script>
   <script src="../dist/Directives/textinput.js"></script>
   <script src="../dist/Directives/combobox.js"></script>
+  <script src="../dist/Directives/checkbox.js"></script>
   <script>
     var app = angular.module('componentsJS', ['bitterscope.components']);
 
@@ -23,7 +27,9 @@
         selected: {value: 'primer'},
         comboOptions: {source: [{id:1, value:'primer'},{id:2,value: 'segundo'}]},
         input: 'dataaaa',
-        inputOptions: {required: true}
+        inputOptions: {required: true},
+        check: 'verdad',
+        checkOptions: {checkValue: '1er', nonCheckValue: '2do'}
       };
 
       $scope.validate = function(){
