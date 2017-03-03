@@ -10,36 +10,28 @@ module Directives {
         nonCheckedValue: string = '0';
     }
 
+    export interface ICheckboxScope extends IComponentScope {
+        checkVal: boolean;
+    }
+
     export class Checkbox extends Component {
         static $inject = ['$element', '$scope'];
         private options: CheckboxOptions;
 
-        constructor(public $element: JQuery, public $scope: IComponentScope) {
+        constructor(public $element: JQuery, public $scope: ICheckboxScope) {
             super($element, $scope);
             let base = this;
-
-            $scope.onBlur = function () {
-                if (!base.validate(true)) {
-                    console.log('invalidate');
-                }
-            };
-
             this.options = <CheckboxOptions>$scope.options || new CheckboxOptions();
+
+            $scope.checkVal = $scope.model.value === this.options.checkedValue;
+
+            $scope.$watch('checkVal', function(newValue, oldValue){
+              $scope.model.value = newValue? base.options.checkedValue : base.options.nonCheckedValue;
+            });
         }
 
         validate(refreshState: boolean): boolean {
-            let resp: boolean = true;
-
-            if (this.options.required && this.scope.model.value == '') {
-                resp = false;
-            }
-
-            //Actualiza el estado del componente en la validacion
-            if (refreshState) {
-                this.scope.hasError = !resp;
-            }
-
-            return resp;
+            return true;
         }
     }
 }
@@ -54,7 +46,7 @@ window.Components.directive('checkbox', function (): ng.IDirective {
             options: '=',
             model: '='
         },
-        template: '<input class="{{customClass}}" ng-model="model.value" type="checkbox" ng-true-value="options.checkedValue" ng-false-value="options.nonCheckedValue">',
+        template: '<input class="{{customClass}}" ng-model="checkVal" type="checkbox">',
         controller: Directives.Checkbox
     };
 });

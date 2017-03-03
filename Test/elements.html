@@ -10,6 +10,11 @@
   <br />
 
   <checkbox data-model="form.check" data-options="form.checkOptions" ></checkbox>
+  <p>
+    {{form.check}}
+  </p>
+  <br />
+  <text-input data-model="form.email" data-options="form.emailOptions"></text-input>
   <br />
   <button ng-click="validate()">Validate</button>
 
@@ -24,12 +29,14 @@
     app.controller('siteController', function($scope){
       $scope.test = 'hola mundo';
       $scope.form = {
-        selected: {value: 'primer'},
+        selected: {value: '1'},
         comboOptions: {source: [{id:1, value:'primer'},{id:2,value: 'segundo'}]},
         input: 'dataaaa',
         inputOptions: {required: true},
-        check: 'verdad',
-        checkOptions: {checkValue: '1er', nonCheckValue: '2do'}
+        check: '1er',
+        checkOptions: {checkedValue: '1er', nonCheckedValue: '2do'},
+        email: '',
+        emailOptions: {type: 'email'}
       };
 
       $scope.validate = function(){

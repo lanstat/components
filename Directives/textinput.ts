@@ -6,6 +6,8 @@ module Directives {
     export class InputOptions extends ComponentOption {
         defaultValue: string = '';
         errorClass: string = 'error';
+        type: string = 'text';
+        mask: string = '';
     }
 
     export class TextInput extends Component {
@@ -16,13 +18,22 @@ module Directives {
             super($element, $scope);
             let base = this;
 
+            this.options = <InputOptions>$scope.options || new InputOptions();
+
+            switch(this.options.type){
+              case 'email':
+                this.options.mask = '(\\w|\\.|\\_)+@\\w+(\\.\\w)+';
+              break;
+              case 'number':
+                this.options.mask = '(\\d|\\.)*';
+              break;
+            }
+
             $scope.onBlur = function () {
                 if (!base.validate(true)) {
                     console.log('invalidate');
                 }
             };
-
-            this.options = <InputOptions>$scope.options || new InputOptions();
         }
 
         validate(refreshState: boolean): boolean {
@@ -30,6 +41,11 @@ module Directives {
 
             if (this.options.required && this.scope.model.value == '') {
                 resp = false;
+            }
+
+            if (resp && this.options.mask.length > 0){
+              let pattern = new RegExp(this.options.mask);
+              resp = pattern.test(this.scope.model.value);
             }
 
             //Actualiza el estado del componente en la validacion
